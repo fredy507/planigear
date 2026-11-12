@@ -1,0 +1,32 @@
+﻿PLANDRA — VERSIÓN ALFA
+======================
+
+Esta es una versión ALFA: una versión de prueba temprana, publicada para
+que se pueda usar y evaluar mientras el programa sigue en desarrollo.
+
+Antes de usarla, tenga en cuenta:
+
+  1. Puede contener errores, cerrarse de forma inesperada o dar resultados
+     incorrectos sin avisar.
+
+  2. Guarde su trabajo con frecuencia y conserve copias de sus proyectos
+     .topo. No trabaje sobre el único ejemplar de un proyecto importante.
+
+  3. Se procura que las versiones futuras abran los proyectos guardados
+     con esta, pero no se garantiza.
+
+  4. FUNCIONES EN DESARROLLO — requieren supervisión:
+       - Curvas de nivel y superficies (TIN)
+       - Nivelación de plataformas
+       - Cálculo de volúmenes de movimiento de tierra
+       - Diseño de caminos y calles (eje, rasante, secciones, drenaje,
+         costos y láminas)
+     Sus resultados son orientativos. Antes de usarlos en planos,
+     presupuestos u obras, un profesional responsable debe revisarlos y
+     comprobarlos con otro método o programa.
+
+  5. El programa se entrega «tal cual», sin garantía de ningún tipo (ver
+     LICENSE.txt). Quien lo usa es responsable de revisar los resultados
+     y del uso que haga de ellos.
+
+Para informar errores o enviar comentarios: plandra507@gmail.com

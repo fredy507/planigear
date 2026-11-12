@@ -1,0 +1,72 @@
+PLANDRA — LICENCIA DE USO (SOFTWARE PROPIETARIO DE USO GRATUITO)
+
+Copyright (c) 2026 Alonso Frederik Arauz Jordan, de nacionalidad panameña.
+Todos los derechos reservados.
+Identificador de la obra: PLD-8E9961BF-A3EF-4497-9ADE-B1838F4C5F90
+
+Plandra (el «Software») es una obra creada en la República de Panamá por
+Alonso Frederik Arauz Jordan (el «Titular»), su autor y único titular
+de los derechos. El Software NO es software libre ni de código abierto. Se
+distribuye de forma gratuita bajo las condiciones siguientes.
+
+1. CONCESIÓN DE USO
+   El Titular concede a cualquier persona, física o jurídica, una licencia
+   gratuita, no exclusiva, no transferible y revocable para descargar,
+   instalar y usar el Software, en cualquier número de equipos, para fines
+   personales, profesionales o comerciales (por ejemplo, elaborar planos
+   para clientes). Los planos, archivos y datos que el usuario produzca con
+   el Software pertenecen al usuario.
+
+2. REDISTRIBUCIÓN
+   Se permite compartir el instalador o el archivo comprimido ORIGINAL, sin
+   modificar y sin cobrar por él. Cualquier otra forma de redistribución
+   (incluirlo en otros productos, paquetes, servicios o colecciones de
+   pago) requiere autorización escrita del Titular.
+
+3. RESTRICCIONES
+   Salvo en la medida en que la ley aplicable lo permita expresamente, NO
+   se permite:
+   a) copiar, modificar, traducir o crear obras derivadas del Software;
+   b) descompilar, desensamblar o aplicar ingeniería inversa al Software;
+   c) vender, alquilar, sublicenciar o cobrar por el Software;
+   d) incorporar el Software, o partes de él, en otros productos o
+      servicios, comerciales o no;
+   e) retirar o alterar los avisos de copyright, de marca o de licencias
+      de terceros.
+
+4. COMPONENTES DE TERCEROS
+   El Software incluye componentes de terceros (bibliotecas y tipografías)
+   que se rigen por sus propias licencias, listadas en
+   THIRD_PARTY_LICENSES.txt y en la ventana «Acerca de». Esta licencia no
+   limita los derechos que esas licencias otorgan sobre dichos componentes.
+
+5. DONACIONES
+   Las donaciones son voluntarias y no otorgan derechos adicionales sobre
+   el Software ni obligan al Titular a dar soporte o actualizaciones.
+
+6. SIN GARANTÍA
+   EL SOFTWARE SE ENTREGA «TAL CUAL», SIN GARANTÍA DE NINGÚN TIPO, EXPRESA
+   O IMPLÍCITA, INCLUIDAS LAS DE COMERCIABILIDAD, IDONEIDAD PARA UN FIN
+   PARTICULAR Y AUSENCIA DE INFRACCIÓN. EL USUARIO ES RESPONSABLE DE
+   VERIFICAR LOS CÁLCULOS, MEDIDAS Y PLANOS QUE PRODUZCA ANTES DE USARLOS
+   O PRESENTARLOS ANTE CUALQUIER AUTORIDAD.
+
+7. LIMITACIÓN DE RESPONSABILIDAD
+   EN NINGÚN CASO EL TITULAR SERÁ RESPONSABLE DE DAÑOS DIRECTOS,
+   INDIRECTOS, INCIDENTALES O CONSECUENTES (INCLUIDA LA PÉRDIDA DE DATOS O
+   DE INGRESOS) DERIVADOS DEL USO O DE LA IMPOSIBILIDAD DE USAR EL SOFTWARE.
+
+8. TERMINACIÓN
+   Esta licencia termina automáticamente si se incumple cualquiera de sus
+   condiciones. Al terminar, el usuario debe dejar de usar el Software y
+   eliminar sus copias.
+
+9. CAMBIOS DE LICENCIA
+   El Titular puede publicar versiones futuras del Software bajo otras
+   condiciones, incluidas licencias de código abierto. Cada versión se rige
+   por la licencia que la acompaña.
+
+10. LEY APLICABLE
+   Esta licencia se rige por las leyes de la República de Panamá.
+
+Contacto: plandra507@gmail.com
