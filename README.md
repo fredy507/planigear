@@ -1,4 +1,4 @@
-# Plandra
+# Planigear
 
 CAD para topografía (Rust-IA), para Windows y Linux. Uso gratuito.
 
@@ -6,7 +6,7 @@ CAD para topografía (Rust-IA), para Windows y Linux. Uso gratuito.
 
 ## Cómo se hizo
 
-Plandra está escrito en **Rust** con **asistencia de inteligencia artificial**. El código fuente se escribió con varias herramientas de inteligencia artificial, bajo la dirección del autor. Son obra del autor la concepción, el diseño, los requisitos y la arquitectura del programa; la selección y el orden del código; y la revisión, corrección y rechazo de cada cambio, que probó en el propio programa.
+Planigear está escrito en **Rust** con **asistencia de inteligencia artificial**. El código fuente se escribió con varias herramientas de inteligencia artificial, bajo la dirección del autor. Son obra del autor la concepción, el diseño, los requisitos y la arquitectura del programa; la selección y el orden del código; y la revisión, corrección y rechazo de cada cambio, que probó en el propio programa.
 
 ## Descargar
 
@@ -14,10 +14,10 @@ Ve a **[Releases](../../releases/latest)** y baja el archivo de tu sistema:
 
 | Sistema | Archivo | Cómo se instala |
 |---|---|---|
-| Windows 10/11 (64 bits) | `Plandra-<versión>-windows-instalador.exe` | Doble clic y seguir el asistente |
-| Windows sin instalar | `Plandra-<versión>-windows-portable.zip` | Descomprimir y abrir `Plandra.exe` |
-| Linux Mint, Ubuntu, Debian | `Plandra-<versión>-linux-amd64.deb` | Doble clic → «Instalar paquete» |
-| Otras distribuciones Linux | `Plandra-<versión>-linux-x86_64.AppImage` | Permitir ejecutar y doble clic |
+| Windows 10/11 (64 bits) | `Planigear-<versión>-windows-instalador.exe` | Doble clic y seguir el asistente |
+| Windows sin instalar | `Planigear-<versión>-windows-portable.zip` | Descomprimir y abrir `Planigear.exe` |
+| Linux Mint, Ubuntu, Debian | `Planigear-<versión>-linux-amd64.deb` | Doble clic → «Instalar paquete» |
+| Otras distribuciones Linux | `Planigear-<versión>-linux-x86_64.AppImage` | Permitir ejecutar y doble clic |
 
 ## Requisitos
 
@@ -34,8 +34,8 @@ El OCR (leer tablas desde imágenes) es opcional y usa Tesseract; ver `LEEME.txt
 
 ## Licencia
 
-Plandra es **software propietario de uso gratuito**: puedes usarlo sin costo, también para trabajos profesionales, pero no modificarlo, revenderlo ni incluirlo en otros productos. Lee [LICENSE.txt](LICENSE.txt).
+Planigear es **software propietario de uso gratuito**: puedes usarlo sin costo, también para trabajos profesionales, pero no modificarlo, revenderlo ni incluirlo en otros productos. Lee [LICENSE.txt](LICENSE.txt).
 
 Este repositorio solo contiene las descargas; el código fuente no es público.
 
-© 2026 Alonso Frederik Arauz Jordan (Panamá) · Identificador de la obra: `PLD-8E9961BF-A3EF-4497-9ADE-B1838F4C5F90`
+© 2026 Alonso Frederik Arauz Jordan (Panamá). Todos los derechos reservados. · Identificador de la obra: `PLD-8E9961BF-A3EF-4497-9ADE-B1838F4C5F90`
