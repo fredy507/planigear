@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <title>Planigear</title>
+  <desc>Logo de Planigear: tablero de dibujo inclinado apoyado sobre dos puntas de un engranaje de tres puntas, con un lápiz dibujando. Símbolo en dos colores (blanco y naranja).</desc>
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="#16324f"/>
+  <g id="simbolo" stroke="#16324f" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <g id="engranaje">
+      <path d="M 91.77 101.74 L 93.35 84.87 L 120.25 84.87 L 121.83 101.74 A 31 31 0 0 1 137.80 129.40 L 137.80 129.40 L 151.62 139.20 L 138.17 162.50 L 122.77 155.43 A 31 31 0 0 1 90.84 155.43 L 90.84 155.43 L 75.43 162.50 L 61.98 139.20 L 75.81 129.40 A 31 31 0 0 1 91.77 101.74 Z" fill="#f2a33a" stroke="none"/>
+      <circle cx="106.8" cy="128.9" r="13" fill="#16324f" stroke="none"/>
+    </g>
+    <g id="tablero" transform="translate(144 112) rotate(60.0)">
+      <!-- canto -->
+      <rect x="-80" y="0" width="160" height="14" rx="2" fill="#ffffff"/>
+      <!-- cara (papel) -->
+      <rect x="-80" y="-28" width="160" height="28" rx="2" fill="#ffffff"/>
+      <!-- reborde porta-lápiz en el extremo bajo -->
+      <rect x="78" y="-40" width="12" height="54" rx="3" fill="#f2a33a"/>
+      <!-- poligonal -->
+      <path d="M -58 -8 L -42 -21 L -14 -20 L 2 -7" fill="none" stroke="#f2a33a" stroke-width="3.5"/>
+      <g fill="#f2a33a" stroke="none"><circle cx="-58" cy="-8" r="4.5"/><circle cx="-42" cy="-21" r="4.5"/><circle cx="-14" cy="-20" r="4.5"/></g>
+      <!-- lápiz simple: cuerpo + punta -->
+      <g id="lapiz" transform="translate(2 -7) rotate(-40.0)">
+        <path d="M 0 0 L 16 -7 L 16 7 Z" fill="#f2a33a"/>
+        <path d="M 19 -7 L 72 -7 Q 76 -7 76 -3 L 76 3 Q 76 7 72 7 L 19 7 Z" fill="#f2a33a"/>
+      </g>
+    </g>
+  </g>
+</svg>

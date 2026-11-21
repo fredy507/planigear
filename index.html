@@ -1,0 +1,349 @@
+<!doctype html>
+<!-- Página web de Planigear (planigear.com), servida con GitHub Pages desde el
+     repo público fredy507/planigear. Fuente en el repo privado: web/.
+     FIX (pedido: "necesito un host para la web y subir los descargables"). -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planigear — CAD para topografía</title>
+<meta name="description" content="Planigear: programa de escritorio para topógrafos y agrimensores. Puntos, curvas de nivel, 3D, nivelación de plataformas y planos listos para imprimir. Gratis para Windows y Linux.">
+<meta property="og:title" content="Planigear — CAD para topografía">
+<meta property="og:description" content="Del levantamiento al plano, en un solo programa. Gratis para Windows y Linux.">
+<meta property="og:image" content="https://planigear.com/img/vista_previa.png">
+<meta property="og:url" content="https://planigear.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="icon" href="img/icono.png" type="image/png">
+<style>
+:root{
+  --azul:#16324f; --azul-2:#1d3f63; --azul-3:#0f2238;
+  --naranja:#f2a33a; --naranja-osc:#d9861a;
+  --fondo:#f6f7f9; --tarjeta:#ffffff; --texto:#1b2430; --suave:#5a6676; --borde:#e2e6eb;
+  --aviso:#fff4e0; --aviso-borde:#f2c27a;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --fondo:#0e1a28; --tarjeta:#15263a; --texto:#e8edf3; --suave:#a7b3c2; --borde:#24384f;
+         --aviso:#2b2414; --aviso-borde:#7a5a22; }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fondo);color:var(--texto);
+  font-family:"Noto Sans","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.55}
+a{color:var(--naranja-osc)}
+@media (prefers-color-scheme: dark){ a{color:var(--naranja)} }
+.ancho{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* Barra superior */
+header.barra{position:sticky;top:0;z-index:10;background:var(--azul-3);color:#fff}
+header.barra .ancho{display:flex;align-items:center;gap:16px;height:60px}
+.marca{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:700;font-size:20px}
+.marca img{width:34px;height:34px}
+nav{margin-left:auto;display:flex;gap:18px;align-items:center}
+nav a{color:#d6deea;text-decoration:none;font-size:15px}
+nav a:hover{color:#fff}
+.idioma{background:transparent;border:1px solid #4b6386;color:#fff;border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit;font-size:14px}
+@media (max-width:720px){ nav a.opc{display:none} }
+
+/* Portada */
+.portada{background:linear-gradient(160deg,var(--azul) 0%,var(--azul-3) 100%);color:#fff;padding:64px 0 72px}
+.portada .ancho{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+@media (max-width:900px){ .portada .ancho{grid-template-columns:1fr} }
+.portada h1{font-size:clamp(34px,5vw,54px);line-height:1.08;margin:0 0 14px}
+.portada h1 span{color:var(--naranja)}
+.portada p.lema{font-size:19px;color:#d6deea;margin:0 0 26px;max-width:34em}
+.etiqueta-alfa{display:inline-block;background:var(--naranja);color:var(--azul-3);font-weight:700;font-size:13px;
+  padding:3px 10px;border-radius:99px;margin-bottom:16px;letter-spacing:.03em}
+.botones{display:flex;flex-wrap:wrap;gap:12px}
+.boton{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:10px;font-weight:700;
+  text-decoration:none;font-size:16px;border:2px solid transparent}
+.boton.principal{background:var(--naranja);color:var(--azul-3)}
+.boton.principal:hover{background:#ffb653}
+.boton.secundario{border-color:#4b6386;color:#fff}
+.boton.secundario:hover{border-color:#fff}
+.boton small{font-weight:400;opacity:.8}
+.nota-version{margin-top:14px;font-size:14px;color:#a9b8cc}
+.portada figure{margin:0}
+.portada figure img{width:100%;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.45);display:block}
+
+/* Secciones */
+section{padding:64px 0}
+h2{font-size:30px;margin:0 0 8px}
+.sub{color:var(--suave);margin:0 0 32px;font-size:17px}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.tarjeta{background:var(--tarjeta);border:1px solid var(--borde);border-radius:12px;padding:22px}
+.tarjeta h3{margin:0 0 6px;font-size:18px}
+.tarjeta p{margin:0;color:var(--suave)}
+.icono{width:40px;height:40px;border-radius:10px;background:rgba(242,163,58,.15);color:var(--naranja-osc);
+  display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.icono svg{width:22px;height:22px}
+
+/* Galería */
+.galeria{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.galeria figure{margin:0;background:var(--tarjeta);border:1px solid var(--borde);border-radius:12px;overflow:hidden}
+.galeria img{width:100%;display:block;aspect-ratio:1280/688;object-fit:cover;cursor:zoom-in}
+.galeria figcaption{padding:12px 16px;color:var(--suave);font-size:15px}
+dialog{border:0;padding:0;background:transparent;max-width:96vw}
+dialog::backdrop{background:rgba(5,12,20,.85)}
+dialog img{max-width:96vw;max-height:90vh;display:block;border-radius:8px}
+
+/* Descargas */
+.descargas{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.descarga{display:flex;flex-direction:column;gap:6px;background:var(--tarjeta);border:1px solid var(--borde);
+  border-radius:12px;padding:20px;text-decoration:none;color:var(--texto)}
+.descarga:hover{border-color:var(--naranja)}
+.descarga strong{font-size:17px}
+.descarga span{color:var(--suave);font-size:14px}
+.descarga .archivo{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;word-break:break-all}
+.aviso{background:var(--aviso);border:1px solid var(--aviso-borde);border-radius:12px;padding:18px 20px;margin-top:24px}
+.aviso p{margin:4px 0}
+.alterna{background:var(--tarjeta);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde)}
+ul.req{margin:0;padding-left:20px;color:var(--suave)}
+.instalar{margin-top:28px}
+.instalar .nota{color:var(--suave);margin:0 0 14px}
+.instalar h4{margin:0 0 8px;font-size:16px}
+.instalar ol{margin:0;padding-left:20px;color:var(--suave);font-size:15px}
+.instalar li{margin:4px 0;overflow-wrap:anywhere}
+
+footer{background:var(--azul-3);color:#a9b8cc;padding:36px 0;font-size:14px}
+footer .ancho{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between}
+footer a{color:#d6deea}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="ancho">
+    <a class="marca" href="#"><img src="img/logo.svg" alt="">Planigear</a>
+    <nav>
+      <a class="opc" href="#funciones" data-es="Funciones" data-en="Features">Funciones</a>
+      <a class="opc" href="#capturas" data-es="Capturas" data-en="Screenshots">Capturas</a>
+      <a href="#descargar" data-es="Descargar" data-en="Download">Descargar</a>
+      <button class="idioma" id="idioma" type="button" aria-label="Cambiar idioma">English</button>
+    </nav>
+  </div>
+</header>
+
+<div class="portada">
+  <div class="ancho">
+    <div>
+      <div class="etiqueta-alfa" data-es="VERSIÓN ALFA · GRATIS" data-en="ALPHA VERSION · FREE">VERSIÓN ALFA · GRATIS</div>
+      <h1 data-es-html="CAD para topografía, <span>del levantamiento al plano.</span>"
+          data-en-html="CAD for land surveying, <span>from field survey to finished drawing.</span>">CAD para topografía, <span>del levantamiento al plano.</span></h1>
+      <p class="lema" data-es="Importe sus puntos, saque curvas de nivel, vea el terreno en 3D, nivele plataformas y entregue el plano listo para imprimir. Un programa de escritorio hecho en Panamá para topógrafos y agrimensores."
+         data-en="Import your points, generate contour lines, see the terrain in 3D, level building pads and deliver a print-ready drawing. A desktop program made in Panama for land surveyors.">Importe sus puntos, saque curvas de nivel, vea el terreno en 3D, nivele plataformas y entregue el plano listo para imprimir. Un programa de escritorio hecho en Panamá para topógrafos y agrimensores.</p>
+      <div class="botones">
+        <a class="boton principal" id="boton-principal" href="#descargar" data-es="Descargar gratis" data-en="Free download">Descargar gratis</a>
+        <a class="boton secundario" href="#capturas" data-es="Ver capturas" data-en="See screenshots">Ver capturas</a>
+      </div>
+      <div class="nota-version" id="nota-version" data-es="Windows 10/11 y Linux (64 bits)" data-en="Windows 10/11 and Linux (64-bit)">Windows 10/11 y Linux (64 bits)</div>
+    </div>
+    <figure><img src="img/03e_mapa_corte_relleno.jpg" alt="Planigear: nivelación de plataforma con mapa de corte y relleno" width="1280" height="688"></figure>
+  </div>
+</div>
+
+<section id="funciones">
+  <div class="ancho">
+    <h2 data-es="Todo el trabajo de oficina, en un solo programa" data-en="All your office work, in one program">Todo el trabajo de oficina, en un solo programa</h2>
+    <p class="sub" data-es="Pensado para el flujo real de un topógrafo: del archivo de la estación total al plano firmado." data-en="Built around a surveyor's real workflow: from the total-station file to the signed drawing.">Pensado para el flujo real de un topógrafo: del archivo de la estación total al plano firmado.</p>
+    <div class="rejilla">
+      <div class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="12" cy="17" r="2"/><circle cx="19" cy="8" r="2"/><path d="M6.5 7.5l4 8M13.5 15.5l4-6"/></svg></div>
+        <h3 data-es="Puntos y códigos" data-en="Points and codes">Puntos y códigos</h3>
+        <p data-es="Importe cientos de puntos (CSV, PENZD y otros) y únalos por código: cercas, quebradas, linderos, cada uno con su color y símbolo." data-en="Import hundreds of points (CSV, PENZD and more) and join them by code: fences, streams, boundaries, each with its own color and symbol.">Importe cientos de puntos (CSV, PENZD y otros) y únalos por código: cercas, quebradas, linderos, cada uno con su color y símbolo.</p></div>
+      <div class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18c4-1 5-6 9-6s5 4 9 3M3 13c4-1 5-6 9-6s5 4 9 3"/></svg></div>
+        <h3 data-es="Curvas de nivel y 3D" data-en="Contours and 3D">Curvas de nivel y 3D</h3>
+        <p data-es="Superficie TIN, curvas de nivel con etiquetas y vista 3D del terreno que puede girar y llevar al plano." data-en="TIN surface, labeled contour lines and a 3D terrain view you can rotate and place on the drawing.">Superficie TIN, curvas de nivel con etiquetas y vista 3D del terreno que puede girar y llevar al plano.</p></div>
+      <div class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17h20M5 17l3-6h8l3 6M9 11V7h6v4"/></svg></div>
+        <h3 data-es="Nivelación de plataformas" data-en="Building pad leveling">Nivelación de plataformas</h3>
+        <p data-es="Corte, relleno y viajes de volqueta, con el mapa de corte y relleno dibujado directo en el plano." data-en="Cut, fill and truck loads, with the cut/fill map drawn straight onto the plan.">Corte, relleno y viajes de volqueta, con el mapa de corte y relleno dibujado directo en el plano.</p></div>
+      <div class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20L20 4M4 4l4 4M16 16l4 4M8 20H4v-4"/></svg></div>
+        <h3 data-es="Dibujo CAD y cotas" data-en="CAD drawing and dimensions">Dibujo CAD y cotas</h3>
+        <p data-es="Líneas, polilíneas, parcelas, cotas, rellenos y tramas. Importa y exporta DXF y shapefile." data-en="Lines, polylines, parcels, dimensions, fills and hatches. Imports and exports DXF and shapefile.">Líneas, polilíneas, parcelas, cotas, rellenos y tramas. Importa y exporta DXF y shapefile.</p></div>
+      <div class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 16h16M12 16v5"/></svg></div>
+        <h3 data-es="Planos listos para imprimir" data-en="Print-ready drawings">Planos listos para imprimir</h3>
+        <p data-es="Hojas con cajetín, escala, localización y vista 3D, listas para PDF o impresora." data-en="Sheets with title block, scale, location map and 3D view, ready for PDF or printer.">Hojas con cajetín, escala, localización y vista 3D, listas para PDF o impresora.</p></div>
+      <div class="tarjeta"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
+        <h3 data-es="Español e inglés, sin Internet" data-en="Spanish and English, offline">Español e inglés, sin Internet</h3>
+        <p data-es="Funciona sin conexión. Interfaz en español y en inglés. Para Windows y Linux." data-en="Works offline. Spanish and English interface. For Windows and Linux.">Funciona sin conexión. Interfaz en español y en inglés. Para Windows y Linux.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="capturas" class="alterna">
+  <div class="ancho">
+    <h2 data-es="Capturas" data-en="Screenshots">Capturas</h2>
+    <p class="sub" data-es="Imágenes reales del programa. Clic para agrandar." data-en="Real screenshots of the program. Click to enlarge.">Imágenes reales del programa. Clic para agrandar.</p>
+    <div class="galeria">
+      <figure><img loading="lazy" src="img/03a_vista3d.jpg" alt="Vista 3D del terreno" width="1280" height="688"><figcaption data-es="Vista 3D del terreno con curvas de nivel" data-en="3D terrain view with contour lines">Vista 3D del terreno con curvas de nivel</figcaption></figure>
+      <figure><img loading="lazy" src="img/02b_codigos_colores.jpg" alt="Códigos de puntos con colores" width="1280" height="688"><figcaption data-es="Códigos de puntos con color y símbolo" data-en="Point codes with color and symbol">Códigos de puntos con color y símbolo</figcaption></figure>
+      <figure><img loading="lazy" src="img/03c_vista3d_en_hoja.jpg" alt="Plano con vista 3D" width="1280" height="688"><figcaption data-es="La vista 3D, dentro de la hoja de impresión" data-en="The 3D view, placed on the print sheet">La vista 3D, dentro de la hoja de impresión</figcaption></figure>
+      <figure><img loading="lazy" src="img/01b_trama_bosque.jpg" alt="Tramas en el plano" width="1280" height="688"><figcaption data-es="Rellenos y tramas para planos claros" data-en="Fills and hatches for clear drawings">Rellenos y tramas para planos claros</figcaption></figure>
+      <figure><img loading="lazy" src="img/03e_mapa_corte_relleno.jpg" alt="Mapa de corte y relleno" width="1280" height="688"><figcaption data-es="Nivelación: corte, relleno y viajes de volqueta" data-en="Leveling: cut, fill and truck loads">Nivelación: corte, relleno y viajes de volqueta</figcaption></figure>
+      <figure><img loading="lazy" src="img/04c_interfaz_ingles.jpg" alt="Interfaz en inglés" width="1280" height="688"><figcaption data-es="También en inglés" data-en="Also in English">También en inglés</figcaption></figure>
+    </div>
+  </div>
+</section>
+<dialog id="visor"><img alt=""></dialog>
+
+<section id="descargar">
+  <div class="ancho">
+    <h2 data-es="Descargar Planigear" data-en="Download Planigear">Descargar Planigear</h2>
+    <p class="sub" id="sub-descarga" data-es="Gratis, también para trabajos profesionales." data-en="Free, also for professional work.">Gratis, también para trabajos profesionales.</p>
+    <div class="descargas" id="descargas">
+      <a class="descarga" data-sufijo="windows-instalador.exe" href="https://github.com/fredy507/planigear/releases/latest">
+        <strong>Windows 10/11</strong><span data-es="Instalador (recomendado)" data-en="Installer (recommended)">Instalador (recomendado)</span><span class="archivo"></span></a>
+      <a class="descarga" data-sufijo="windows-portable.zip" href="https://github.com/fredy507/planigear/releases/latest">
+        <strong data-es="Windows sin instalar" data-en="Windows portable">Windows sin instalar</strong><span data-es="Descomprima y abra Planigear.exe" data-en="Unzip and open Planigear.exe">Descomprima y abra Planigear.exe</span><span class="archivo"></span></a>
+      <a class="descarga" data-sufijo="linux-amd64.deb" href="https://github.com/fredy507/planigear/releases/latest">
+        <strong>Linux Mint, Ubuntu, Debian</strong><span data-es="Paquete .deb: doble clic para instalar" data-en=".deb package: double-click to install">Paquete .deb: doble clic para instalar</span><span class="archivo"></span></a>
+      <a class="descarga" data-sufijo="linux-x86_64.AppImage" href="https://github.com/fredy507/planigear/releases/latest">
+        <strong data-es="Otras distribuciones Linux" data-en="Other Linux distributions">Otras distribuciones Linux</strong><span data-es="AppImage: permita ejecutar y doble clic" data-en="AppImage: allow running and double-click">AppImage: permita ejecutar y doble clic</span><span class="archivo"></span></a>
+    </div>
+    <p style="margin-top:14px;font-size:14px;color:var(--suave)">
+      <a href="https://github.com/fredy507/planigear/releases" data-es="Todas las versiones y sumas SHA-256" data-en="All versions and SHA-256 checksums">Todas las versiones y sumas SHA-256</a>
+    </p>
+
+    <div class="aviso">
+      <p><strong data-es="Versión ALFA de prueba." data-en="ALPHA test version.">Versión ALFA de prueba.</strong>
+        <span data-es="Puede tener errores. Guarde copias de sus proyectos. Curvas de nivel, nivelación, volúmenes y diseño de caminos están en desarrollo: compruebe sus resultados con otro método antes de usarlos en un trabajo real."
+              data-en="It may have bugs. Keep backups of your projects. Contours, leveling, volumes and road design are under development: check results with another method before using them in real work.">Puede tener errores. Guarde copias de sus proyectos. Curvas de nivel, nivelación, volúmenes y diseño de caminos están en desarrollo: compruebe sus resultados con otro método antes de usarlos en un trabajo real.</span></p>
+    </div>
+
+    <!-- FIX (pedido: "como dejar los empaquetados y que no pasen como virus o codigo malisioso y se puedan instalar bien"):
+         mientras el instalador no esté firmado, Windows avisa por ser un programa nuevo. Se explica cómo instalar. -->
+    <div class="tarjeta instalar" id="como-instalar">
+      <h3 data-es="Cómo instalar" data-en="How to install">Cómo instalar</h3>
+      <p class="nota" data-es="Planigear es nuevo y todavía no tiene firma digital, así que Windows y el navegador pueden mostrar un aviso. No es un virus: es el aviso que reciben los programas que aún tienen pocas descargas."
+         data-en="Planigear is new and not digitally signed yet, so Windows and your browser may show a warning. It is not a virus: it is the warning that programs with few downloads receive.">Planigear es nuevo y todavía no tiene firma digital, así que Windows y el navegador pueden mostrar un aviso. No es un virus: es el aviso que reciben los programas que aún tienen pocas descargas.</p>
+      <div class="rejilla">
+        <div>
+          <h4>Windows</h4>
+          <ol>
+            <li data-es="Si el navegador dice que el archivo «no se descarga con frecuencia», elija «Conservar» (en Edge, en el menú «…»)."
+                data-en="If the browser says the file «isn't commonly downloaded», choose «Keep» (in Edge, from the «…» menu).">Si el navegador dice que el archivo «no se descarga con frecuencia», elija «Conservar» (en Edge, en el menú «…»).</li>
+            <li data-es="Abra el instalador. Si aparece «Windows protegió su PC», pulse «Más información» y luego «Ejecutar de todas formas»."
+                data-en="Open the installer. If «Windows protected your PC» appears, click «More info» and then «Run anyway».">Abra el instalador. Si aparece «Windows protegió su PC», pulse «Más información» y luego «Ejecutar de todas formas».</li>
+            <li data-es="No pide permisos de administrador: se instala solo para su usuario."
+                data-en="It does not ask for administrator rights: it installs for your user only.">No pide permisos de administrador: se instala solo para su usuario.</li>
+          </ol>
+        </div>
+        <div>
+          <h4>Linux</h4>
+          <ol>
+            <li data-es=".deb: doble clic y «Instalar paquete»."
+                data-en=".deb: double-click and «Install package».">.deb: doble clic y «Instalar paquete».</li>
+            <li data-es="AppImage: clic derecho → Propiedades → Permisos → «Permitir ejecutar como programa», y doble clic."
+                data-en="AppImage: right-click → Properties → Permissions → «Allow executing as program», then double-click.">AppImage: clic derecho → Propiedades → Permisos → «Permitir ejecutar como programa», y doble clic.</li>
+          </ol>
+        </div>
+        <div>
+          <h4 data-es="¿Es el archivo original?" data-en="Is it the original file?">¿Es el archivo original?</h4>
+          <ol>
+            <li data-es="Descargue solo desde esta página o desde GitHub (fredy507/planigear)."
+                data-en="Download only from this page or from GitHub (fredy507/planigear).">Descargue solo desde esta página o desde GitHub (fredy507/planigear).</li>
+            <li data-es="Compare la suma SHA-256 con SHA256SUMS.txt de la versión. En Windows: certutil -hashfile archivo SHA256. En Linux: sha256sum archivo."
+                data-en="Compare the SHA-256 checksum with the release's SHA256SUMS.txt. On Windows: certutil -hashfile file SHA256. On Linux: sha256sum file.">Compare la suma SHA-256 con SHA256SUMS.txt de la versión. En Windows: certutil -hashfile archivo SHA256. En Linux: sha256sum archivo.</li>
+            <li data-es="Si su antivirus lo bloquea, escríbanos a contact@planigear.com indicando cuál antivirus y versión."
+                data-en="If your antivirus blocks it, write to contact@planigear.com with the antivirus name and version.">Si su antivirus lo bloquea, escríbanos a contact@planigear.com indicando cuál antivirus y versión.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="rejilla" style="margin-top:28px">
+      <div class="tarjeta">
+        <h3 data-es="Requisitos" data-en="Requirements">Requisitos</h3>
+        <ul class="req">
+          <li data-es="Windows 10/11 de 64 bits, o Linux de 64 bits" data-en="64-bit Windows 10/11, or 64-bit Linux">Windows 10/11 de 64 bits, o Linux de 64 bits</li>
+          <li data-es="4 GB de RAM como mínimo (8 GB recomendados)" data-en="4 GB RAM minimum (8 GB recommended)">4 GB de RAM como mínimo (8 GB recomendados)</li>
+          <li data-es="Tarjeta gráfica con OpenGL 2.0" data-en="Graphics card with OpenGL 2.0">Tarjeta gráfica con OpenGL 2.0</li>
+        </ul>
+      </div>
+      <div class="tarjeta">
+        <h3 data-es="Cómo se hizo" data-en="How it was made">Cómo se hizo</h3>
+        <p data-es="Escrito en Rust con varias herramientas de inteligencia artificial, bajo la dirección del autor, que lo diseñó y revisó, corrigió y probó cada cambio."
+           data-en="Written in Rust with several artificial intelligence tools, under the direction of the author, who designed it and reviewed, corrected and tested every change.">Escrito en Rust con varias herramientas de inteligencia artificial, bajo la dirección del autor, que lo diseñó y revisó, corrigió y probó cada cambio.</p>
+      </div>
+      <div class="tarjeta">
+        <h3 data-es="Contacto" data-en="Contact">Contacto</h3>
+        <p data-es="Errores, ideas y comentarios:" data-en="Bugs, ideas and feedback:">Errores, ideas y comentarios:</p>
+        <p><a href="mailto:contact@planigear.com">contact@planigear.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ancho">
+    <div>© 2026 Alonso Frederik Arauz Jordan (Panamá). <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span><br>
+      <span data-es="Software propietario de uso gratuito." data-en="Proprietary freeware.">Software propietario de uso gratuito.</span>
+      <a href="https://github.com/fredy507/planigear/blob/main/LICENSE.txt" data-es="Licencia" data-en="License">Licencia</a></div>
+    <div><a href="https://github.com/fredy507/planigear/releases">GitHub</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // --- Idioma (es/en), recordado en este navegador ---
+  var idioma = 'es';
+  try { idioma = localStorage.getItem('idioma') || (navigator.language||'es').slice(0,2); } catch(e){}
+  if (idioma !== 'en') idioma = 'es';
+  function aplicar(){
+    document.documentElement.lang = idioma;
+    document.querySelectorAll('[data-es]').forEach(function(n){ n.textContent = n.getAttribute('data-'+idioma); });
+    document.querySelectorAll('[data-es-html]').forEach(function(n){ n.innerHTML = n.getAttribute('data-'+idioma+'-html'); });
+    document.getElementById('idioma').textContent = idioma === 'es' ? 'English' : 'Español';
+    pintarVersion();
+  }
+  document.getElementById('idioma').addEventListener('click', function(){
+    idioma = idioma === 'es' ? 'en' : 'es';
+    try { localStorage.setItem('idioma', idioma); } catch(e){}
+    aplicar();
+  });
+
+  // --- Enlaces directos a la última versión publicada ---
+  var version = null;
+  function pintarVersion(){
+    if (!version) return;
+    var nota = document.getElementById('nota-version');
+    nota.textContent = (idioma === 'es' ? 'Versión ' : 'Version ') + version + ' · ' + nota.getAttribute('data-'+idioma);
+  }
+  function mb(b){ return (b/1048576).toFixed(0) + ' MB'; }
+  fetch('https://api.github.com/repos/fredy507/planigear/releases/latest')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(rel){
+      if (!rel || !rel.assets) return;
+      version = (rel.tag_name || '').replace(/^v/, '');
+      document.querySelectorAll('.descarga[data-sufijo]').forEach(function(a){
+        var suf = a.getAttribute('data-sufijo');
+        var asset = rel.assets.filter(function(x){ return x.name.slice(-suf.length) === suf; })[0];
+        if (asset){
+          a.href = asset.browser_download_url;
+          a.querySelector('.archivo').textContent = asset.name + ' · ' + mb(asset.size);
+        }
+      });
+      // Botón principal: directo al instalador del sistema del visitante.
+      var ua = navigator.userAgent, suf = /Windows/.test(ua) ? 'windows-instalador.exe' : /Linux/.test(ua) && !/Android/.test(ua) ? 'linux-amd64.deb' : null;
+      var destino = suf && document.querySelector('.descarga[data-sufijo="'+suf+'"]');
+      if (destino && destino.href.indexOf('/download/') > 0){
+        var b = document.getElementById('boton-principal');
+        b.href = destino.href;
+        b.setAttribute('data-es', suf.indexOf('windows') === 0 ? 'Descargar para Windows' : 'Descargar para Linux');
+        b.setAttribute('data-en', suf.indexOf('windows') === 0 ? 'Download for Windows' : 'Download for Linux');
+      }
+      aplicar();
+    })
+    .catch(function(){});
+
+  // --- Visor de capturas ---
+  var visor = document.getElementById('visor');
+  document.querySelectorAll('.galeria img').forEach(function(img){
+    img.addEventListener('click', function(){ visor.querySelector('img').src = img.src; visor.showModal(); });
+  });
+  visor.addEventListener('click', function(){ visor.close(); });
+
+  aplicar();
+})();
+</script>
+</body>
+</html>
