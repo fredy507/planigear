@@ -43,7 +43,10 @@ nav{margin-left:auto;display:flex;gap:18px;align-items:center}
 nav a{color:#d6deea;text-decoration:none;font-size:15px}
 nav a:hover{color:#fff}
 .idioma{background:transparent;border:1px solid #4b6386;color:#fff;border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit;font-size:14px}
+nav a.donar{background:var(--naranja);color:var(--azul-3);font-weight:700;padding:6px 16px;border-radius:8px}
+nav a.donar:hover{background:#ffb653;color:var(--azul-3)}
 @media (max-width:720px){ nav a.opc{display:none} }
+@media (max-width:480px){ nav a.desc{display:none} nav{gap:10px} }
 
 /* Portada */
 .portada{background:linear-gradient(160deg,var(--azul) 0%,var(--azul-3) 100%);color:#fff;padding:64px 0 72px}
@@ -64,7 +67,7 @@ nav a:hover{color:#fff}
 .boton small{font-weight:400;opacity:.8}
 .nota-version{margin-top:14px;font-size:14px;color:#a9b8cc}
 .portada figure{margin:0}
-.portada figure img{width:100%;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.45);display:block}
+.portada figure img{width:100%;height:auto;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.45);display:block}
 
 /* Secciones */
 section{padding:64px 0}
@@ -118,8 +121,9 @@ footer a{color:#d6deea}
     <nav>
       <a class="opc" href="#funciones" data-es="Funciones" data-en="Features">Funciones</a>
       <a class="opc" href="#capturas" data-es="Capturas" data-en="Screenshots">Capturas</a>
-      <a href="#descargar" data-es="Descargar" data-en="Download">Descargar</a>
-      <a class="opc" href="#apoyar" data-es="Apoyar" data-en="Support">Apoyar</a>
+      <a class="desc" href="#descargar" data-es="Descargar" data-en="Download">Descargar</a>
+      <!-- Botón de donar arriba (antes: tarjeta al final). Barra fija: siempre a la vista. -->
+      <a class="donar" href="https://ko-fi.com/planigear" data-goatcounter-click="donar-kofi" target="_blank" rel="noopener" data-es="Donar" data-en="Donate">Donar</a>
       <button class="idioma" id="idioma" type="button" aria-label="Cambiar idioma">English</button>
     </nav>
   </div>
@@ -191,13 +195,13 @@ footer a{color:#d6deea}
     <h2 data-es="Descargar Planigear" data-en="Download Planigear">Descargar Planigear</h2>
     <p class="sub" id="sub-descarga" data-es="Gratis, también para trabajos profesionales." data-en="Free, also for professional work.">Gratis, también para trabajos profesionales.</p>
     <div class="descargas" id="descargas">
-      <a class="descarga" data-sufijo="windows-instalador.exe" href="https://github.com/fredy507/planigear/releases/latest">
+      <a class="descarga" data-sufijo="windows-instalador.exe" data-goatcounter-click="descarga-windows-instalador" href="https://github.com/fredy507/planigear/releases/latest">
         <strong>Windows 10/11</strong><span data-es="Instalador (recomendado)" data-en="Installer (recommended)">Instalador (recomendado)</span><span class="archivo"></span></a>
-      <a class="descarga" data-sufijo="windows-portable.zip" href="https://github.com/fredy507/planigear/releases/latest">
+      <a class="descarga" data-sufijo="windows-portable.zip" data-goatcounter-click="descarga-windows-portable" href="https://github.com/fredy507/planigear/releases/latest">
         <strong data-es="Windows sin instalar" data-en="Windows portable">Windows sin instalar</strong><span data-es="Descomprima y abra Planigear.exe" data-en="Unzip and open Planigear.exe">Descomprima y abra Planigear.exe</span><span class="archivo"></span></a>
-      <a class="descarga" data-sufijo="linux-amd64.deb" href="https://github.com/fredy507/planigear/releases/latest">
+      <a class="descarga" data-sufijo="linux-amd64.deb" data-goatcounter-click="descarga-linux-deb" href="https://github.com/fredy507/planigear/releases/latest">
         <strong>Linux Mint, Ubuntu, Debian</strong><span data-es="Paquete .deb: doble clic para instalar" data-en=".deb package: double-click to install">Paquete .deb: doble clic para instalar</span><span class="archivo"></span></a>
-      <a class="descarga" data-sufijo="linux-x86_64.AppImage" href="https://github.com/fredy507/planigear/releases/latest">
+      <a class="descarga" data-sufijo="linux-x86_64.AppImage" data-goatcounter-click="descarga-linux-appimage" href="https://github.com/fredy507/planigear/releases/latest">
         <strong data-es="Otras distribuciones Linux" data-en="Other Linux distributions">Otras distribuciones Linux</strong><span data-es="AppImage: permita ejecutar y doble clic" data-en="AppImage: allow running and double-click">AppImage: permita ejecutar y doble clic</span><span class="archivo"></span></a>
     </div>
     <p style="margin-top:14px;font-size:14px;color:var(--suave)">
@@ -270,13 +274,6 @@ footer a{color:#d6deea}
         <p data-es="Errores, ideas y comentarios:" data-en="Bugs, ideas and feedback:">Errores, ideas y comentarios:</p>
         <p><a href="mailto:contact@planigear.com">contact@planigear.com</a></p>
       </div>
-      <!-- FIX (pedido: "la web tine el boton de donaciones?" → "Sí, agrégalo"): Ko-fi conectado a PayPal. -->
-      <div class="tarjeta" id="apoyar">
-        <h3 data-es="Apoyar el proyecto" data-en="Support the project">Apoyar el proyecto</h3>
-        <p data-es="Planigear es gratis. Si le sirve en su trabajo, una donación ayuda a seguir mejorándolo."
-           data-en="Planigear is free. If it helps your work, a donation helps keep improving it.">Planigear es gratis. Si le sirve en su trabajo, una donación ayuda a seguir mejorándolo.</p>
-        <p><a class="boton principal" href="https://ko-fi.com/planigear" target="_blank" rel="noopener" data-es="Donar en Ko-fi" data-en="Donate on Ko-fi">Donar en Ko-fi</a></p>
-      </div>
     </div>
   </div>
 </section>
@@ -286,7 +283,7 @@ footer a{color:#d6deea}
     <div>© 2026 Alonso Frederik Arauz Jordan (Panamá). <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span><br>
       <span data-es="Software propietario de uso gratuito." data-en="Proprietary freeware.">Software propietario de uso gratuito.</span>
       <a href="https://github.com/fredy507/planigear/blob/main/LICENSE.txt" data-es="Licencia" data-en="License">Licencia</a></div>
-    <div><a href="https://ko-fi.com/planigear" target="_blank" rel="noopener" data-es="Apoyar el proyecto" data-en="Support the project">Apoyar el proyecto</a> · <a href="https://github.com/fredy507/planigear/releases">GitHub</a></div>
+    <div><a href="https://ko-fi.com/planigear" data-goatcounter-click="donar-kofi" target="_blank" rel="noopener" data-es="Apoyar el proyecto" data-en="Support the project">Apoyar el proyecto</a> · <a href="https://github.com/fredy507/planigear/releases">GitHub</a></div>
   </div>
 </footer>
 
@@ -336,6 +333,10 @@ footer a{color:#d6deea}
       if (destino && destino.href.indexOf('/download/') > 0){
         var b = document.getElementById('boton-principal');
         b.href = destino.href;
+        // Medición: el botón cuenta como el archivo al que apunta ahora. Si count.js ya cargó,
+        // hay que volver a enlazar (al cargar, el botón aún no tenía el atributo).
+        b.setAttribute('data-goatcounter-click', destino.getAttribute('data-goatcounter-click'));
+        if (window.goatcounter && window.goatcounter.bind_events) window.goatcounter.bind_events();
         b.setAttribute('data-es', suf.indexOf('windows') === 0 ? 'Descargar para Windows' : 'Descargar para Linux');
         b.setAttribute('data-en', suf.indexOf('windows') === 0 ? 'Download for Windows' : 'Download for Linux');
       }
@@ -353,5 +354,6 @@ footer a{color:#d6deea}
   aplicar();
 })();
 </script>
+<script data-goatcounter="https://planigear.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

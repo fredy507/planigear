@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Panel — Planigear</title>
+<style>
+:root{--fondo:#f6f7f9;--tarjeta:#fff;--texto:#1b2430;--suave:#5a6676;--borde:#e2e6eb;
+  --barra:#2a78d6;--pista:#e8eef5;--boton:#16324f;--boton-texto:#fff;--aviso:#fff4e0;--aviso-borde:#f2c27a;--enlace:#1c5fae}
+@media (prefers-color-scheme:dark){
+  :root{--fondo:#0e1a28;--tarjeta:#15263a;--texto:#e8edf3;--suave:#a7b3c2;--borde:#24384f;
+    --barra:#3987e5;--pista:#1d324a;--boton:#f2a33a;--boton-texto:#0f2238;--aviso:#2b2414;--aviso-borde:#7a5a22;--enlace:#8dbcf5}
+}
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--fondo);color:var(--texto);line-height:1.5;
+  font-family:"Noto Sans","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:24px;margin:0 0 16px}
+h2{font-size:18px;margin:0 0 4px}
+h3{font-size:15px;margin:20px 0 8px}
+p{margin:0 0 12px}
+a{color:var(--enlace)}
+.suave{color:var(--suave);font-size:14px}
+.controles{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;margin-bottom:16px}
+select,button,.boton{font:inherit;min-height:42px;padding:8px 14px;border-radius:8px;border:1px solid var(--borde)}
+select{background:var(--tarjeta);color:var(--texto)}
+button,.boton{background:var(--boton);color:var(--boton-texto);font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+button:disabled{opacity:.6;cursor:default}
+.boton.sec{background:transparent;color:var(--texto)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:12px}
+.kpi,.bloque{background:var(--tarjeta);border:1px solid var(--borde);border-radius:12px;padding:16px}
+.kpi .nombre{color:var(--suave);font-size:14px}
+.kpi .valor{font-size:32px;font-weight:700;line-height:1.25}
+.bloque{margin-top:16px;padding:20px 16px}
+.aviso{background:var(--aviso);border:1px solid var(--aviso-borde);border-radius:8px;padding:10px 14px;margin:12px 0}
+.fila{margin-bottom:12px}
+.fila .linea{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.fila .num{font-variant-numeric:tabular-nums;font-weight:600}
+.pista{height:10px;background:var(--pista);border-radius:4px;margin-top:4px;overflow:hidden}
+.pista>div{height:100%;background:var(--barra);border-radius:0 4px 4px 0}
+.desliza{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--borde)}
+th{color:var(--suave);font-weight:600;font-size:14px}
+th:last-child,td:last-child{text-align:right;padding-right:0;font-variant-numeric:tabular-nums}
+.enlaces{display:flex;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Panel de Planigear</h1>
+  <div class="controles">
+    <label for="periodo">Periodo</label>
+    <select id="periodo">
+      <option value="7">7 días</option>
+      <option value="30" selected>30 días</option>
+      <option value="365">1 año</option>
+      <option value="0">Todo</option>
+    </select>
+    <button id="actualizar" type="button">Actualizar</button>
+    <span class="suave" id="hora" role="status"></span>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="nombre">Visitas del periodo</div><div class="valor" id="k-visitas">…</div></div>
+    <div class="kpi"><div class="nombre">Visitantes únicos del periodo</div><div class="valor" id="k-unicos">…</div></div>
+    <div class="kpi"><div class="nombre">Descargas totales (desde siempre)</div><div class="valor" id="k-descargas">…</div></div>
+    <div class="kpi"><div class="nombre">Clics en «Donar» del periodo</div><div class="valor" id="k-donar">…</div></div>
+  </div>
+  <p class="suave">GoatCounter entrega hoy el mismo número para visitas y visitantes únicos, y su total incluye los clics medidos. Sus datos pueden tardar hasta 4 horas en actualizarse.</p>
+
+  <section class="bloque">
+    <h2>Descargas</h2>
+    <p class="suave">Contadas por GitHub, desde siempre. No dependen del periodo.</p>
+    <div class="aviso" id="aviso-gh" role="alert" hidden></div>
+    <h3>Por plataforma</h3>
+    <div id="barras"></div>
+    <h3>Por versión</h3>
+    <div class="desliza"><table>
+      <thead><tr><th scope="col">Versión</th><th scope="col">Publicada</th><th scope="col">Descargas</th></tr></thead>
+      <tbody id="versiones"></tbody>
+    </table></div>
+  </section>
+
+  <section class="bloque">
+    <h2>Clics en la web</h2>
+    <p class="suave">Contados por GoatCounter en el periodo elegido.</p>
+    <div class="aviso" id="aviso-gc" role="alert" hidden></div>
+    <div id="clics"></div>
+  </section>
+
+  <section class="bloque">
+    <h2>Donaciones</h2>
+    <p class="suave">Los montos se ven en Ko-fi y llegan por correo; aquí solo se cuentan los clics.</p>
+    <div class="enlaces">
+      <a class="boton" href="https://ko-fi.com/manage/supportreceived" target="_blank" rel="noopener noreferrer">Ver donaciones recibidas</a>
+      <a class="boton sec" href="https://ko-fi.com/planigear" target="_blank" rel="noopener noreferrer">Página de Ko-fi</a>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <h2>Más datos</h2>
+    <p><a href="https://planigear.goatcounter.com" target="_blank" rel="noopener noreferrer">Estadísticas completas en GoatCounter</a></p>
+    <p><a href="https://github.com/fredy507/planigear/graphs/traffic" target="_blank" rel="noopener noreferrer">Tráfico del repositorio en GitHub</a></p>
+  </section>
+</main>
+
+<script>
+(function(){
+  'use strict';
+  const GC = 'planigear';
+  const REPO = 'fredy507/planigear';
+
+  const EVENTOS = [
+    ['descarga-windows-instalador', 'Windows, instalador'],
+    ['descarga-windows-portable', 'Windows, portable'],
+    ['descarga-linux-deb', 'Linux, .deb'],
+    ['descarga-linux-appimage', 'Linux, AppImage'],
+    ['donar-kofi', 'Donar en Ko-fi']
+  ];
+  const PLATAFORMAS = [
+    ['Windows, instalador', /instalador.*\.exe/i],
+    ['Windows, portable', /portable.*\.zip/i],
+    ['Linux, .deb', /\.deb/i],
+    ['Linux, AppImage', /\.appimage/i]
+  ];
+
+  const $ = id => document.getElementById(id);
+  const fmt = n => n === null ? '—' : n.toLocaleString('es-PA');
+  function crear(tipo, clase, texto){
+    const n = document.createElement(tipo);
+    if (clase) n.className = clase;
+    if (texto !== undefined) n.textContent = texto;
+    return n;
+  }
+  function aviso(id, texto){ $(id).textContent = texto; $(id).hidden = !texto; }
+
+  // filas: [nombre, número o null si no se pudo leer]
+  function pintarBarras(id, filas){
+    const max = Math.max(1, ...filas.map(f => f[1] || 0));
+    $(id).replaceChildren(...filas.map(([nombre, n]) => {
+      const fila = crear('div', 'fila'), linea = crear('div', 'linea');
+      linea.append(crear('span', '', nombre), crear('span', 'num', fmt(n)));
+      const pista = crear('div', 'pista'), barra = crear('div');
+      barra.style.width = ((n || 0) / max * 100) + '%';
+      pista.append(barra);
+      pista.title = nombre + ': ' + fmt(n);
+      fila.append(linea, pista);
+      return fila;
+    }));
+  }
+
+  // --- GoatCounter ---
+  function inicio(dias){
+    if (!dias) return '';
+    const d = new Date();
+    d.setUTCDate(d.getUTCDate() - (dias - 1));   // hoy incluido; GoatCounter usa UTC
+    return '?start=' + d.toISOString().slice(0, 10);
+  }
+  function numero(texto){
+    const digitos = String(texto === undefined ? '' : texto).replace(/\D/g, '');
+    if (!digitos) throw new Error('respuesta inesperada');
+    return Number(digitos);
+  }
+  async function contador(ruta, dias){
+    const r = await fetch('https://' + GC + '.goatcounter.com/counter/' + encodeURIComponent(ruta) + '.json' + inicio(dias), {cache: 'no-store'});
+    if (r.status === 404 && ruta !== 'TOTAL') return {visitas: 0, unicos: 0};
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const j = await r.json();
+    return {visitas: numero(j.count), unicos: numero(j.count_unique)};
+  }
+
+  let turno = 0;   // descarta respuestas de una consulta anterior si se cambió el periodo
+  async function cargarVisitas(mio){
+    const dias = Number($('periodo').value);
+    const res = await Promise.allSettled(['TOTAL', ...EVENTOS.map(e => e[0])].map(r => contador(r, dias)));
+    if (mio !== turno) return;
+    const dato = (i, campo) => res[i].status === 'fulfilled' ? res[i].value[campo] : null;
+    $('k-visitas').textContent = fmt(dato(0, 'visitas'));
+    $('k-unicos').textContent = fmt(dato(0, 'unicos'));
+    const clics = EVENTOS.map((e, i) => [e[1], dato(i + 1, 'visitas')]);
+    $('k-donar').textContent = fmt(clics[EVENTOS.findIndex(e => e[0] === 'donar-kofi')][1]);
+    pintarBarras('clics', clics);
+    aviso('aviso-gc', res.some(r => r.status === 'rejected')
+      ? 'No se pudieron leer todas las visitas. Revise que la cuenta «' + GC + '» exista en GoatCounter y que en Settings esté activado "Allow adding visitor counts on your website".'
+      : '');
+  }
+
+  // --- GitHub ---
+  async function cargarDescargas(mio){
+    try {
+      const r = await fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=100');
+      if (r.status === 403 || r.status === 429) throw new Error('limite');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const versiones = await r.json();
+      if (mio !== turno) return;
+      const sumas = PLATAFORMAS.map(() => 0);
+      let total = 0, otros = 0;
+      const filas = versiones.map(v => {
+        let suma = 0;
+        (v.assets || []).forEach(a => {
+          suma += a.download_count;
+          const i = PLATAFORMAS.findIndex(p => p[1].test(a.name));
+          if (i >= 0) sumas[i] += a.download_count; else otros += a.download_count;
+        });
+        total += suma;
+        const tr = crear('tr');
+        const fecha = v.published_at ? new Date(v.published_at).toLocaleDateString('es-PA', {year: 'numeric', month: 'short', day: 'numeric'}) : '—';
+        tr.append(crear('td', '', v.tag_name + (v.prerelease ? ' (prueba)' : '')), crear('td', '', fecha), crear('td', '', fmt(suma)));
+        return tr;
+      });
+      $('k-descargas').textContent = fmt(total);
+      const barras = PLATAFORMAS.map((p, i) => [p[0], sumas[i]]);
+      if (otros) barras.push(['Otros archivos', otros]);
+      pintarBarras('barras', barras);
+      $('versiones').replaceChildren(...filas);
+      aviso('aviso-gh', '');
+    } catch (e) {
+      if (mio !== turno) return;
+      if ($('k-descargas').textContent === '…') $('k-descargas').textContent = '—';
+      aviso('aviso-gh', e.message === 'limite'
+        ? 'GitHub alcanzó el límite de consultas. Espere unos minutos y pulse «Actualizar».'
+        : 'No se pudieron leer las descargas de GitHub. Revise la conexión y pulse «Actualizar».');
+    }
+  }
+
+  async function cargar(){
+    const mio = ++turno;
+    $('actualizar').disabled = true;
+    $('hora').textContent = 'Actualizando…';
+    ['k-visitas', 'k-unicos', 'k-donar'].forEach(id => { $(id).textContent = '…'; });
+    await Promise.all([cargarVisitas(mio), cargarDescargas(mio)]);
+    if (mio !== turno) return;
+    $('actualizar').disabled = false;
+    $('hora').textContent = 'Última actualización: ' + new Date().toLocaleString('es-PA');
+  }
+  $('actualizar').addEventListener('click', cargar);
+  $('periodo').addEventListener('change', cargar);
+  cargar();
+})();
+</script>
+</body>
+</html>
