@@ -89,6 +89,41 @@ h2{font-size:30px;margin:0 0 8px}
 dialog{border:0;padding:0;background:transparent;max-width:96vw}
 dialog::backdrop{background:rgba(5,12,20,.85)}
 dialog img{max-width:96vw;max-height:90vh;display:block;border-radius:8px}
+/* Contacto al inicio de la página + ventana para escribir mejoras o errores */
+.contacto-barra{background:var(--azul);color:#d6deea;font-size:14.5px;border-bottom:1px solid #2a4a70}
+.contacto-barra .ancho{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-top:9px;padding-bottom:9px}
+.contacto-barra a.correo{color:#fff;font-weight:700;text-decoration:none;word-break:break-all}
+.contacto-barra a.correo:hover{text-decoration:underline}
+.contacto-barra .acciones{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.contacto-barra button{font:inherit;font-size:14px;font-weight:600;cursor:pointer;border-radius:8px;padding:6px 14px;
+  background:transparent;color:#fff;border:1px solid #4b6386}
+.contacto-barra button:hover{border-color:#fff}
+.contacto-barra button.mejora{background:var(--naranja);border-color:var(--naranja);color:var(--azul-3)}
+.contacto-barra button.mejora:hover{background:#ffb653}
+@media (max-width:620px){ .contacto-barra .acciones{margin-left:0;width:100%} .contacto-barra button{flex:1} }
+dialog#mensaje{background:var(--tarjeta);color:var(--texto);border-radius:14px;width:min(560px,calc(100vw - 32px));
+  max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+dialog#mensaje::backdrop{background:rgba(5,12,20,.6)}
+#mensaje form{padding:22px;display:flex;flex-direction:column;gap:14px}
+#mensaje h3{margin:0;font-size:20px}
+#mensaje .sub{margin:0;color:var(--suave);font-size:14px}
+#mensaje .tipos{display:flex;gap:8px;flex-wrap:wrap}
+#mensaje .tipos label{flex:1;min-width:140px;display:flex;align-items:center;gap:8px;cursor:pointer;
+  border:1px solid var(--borde);border-radius:10px;padding:10px 12px;font-weight:600}
+#mensaje .tipos label:has(input:checked){border-color:var(--naranja);background:var(--aviso)}
+#mensaje .campo{display:flex;flex-direction:column;gap:5px;font-size:14px;font-weight:600}
+#mensaje .campo small{font-weight:400;color:var(--suave)}
+#mensaje input[type=text],#mensaje input[type=email],#mensaje textarea{font:inherit;font-weight:400;font-size:15px;
+  padding:10px 12px;border-radius:8px;border:1px solid var(--borde);background:var(--fondo);color:var(--texto);width:100%;box-sizing:border-box}
+#mensaje textarea{min-height:150px;resize:vertical}
+#mensaje .pie{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+#mensaje .pie button{font:inherit;font-weight:700;cursor:pointer;border-radius:10px;padding:11px 18px;
+  border:1px solid var(--borde);background:transparent;color:var(--texto)}
+#mensaje .pie button.enviar{background:var(--naranja);border-color:var(--naranja);color:var(--azul-3)}
+#mensaje .nota{margin:0;font-size:13px;color:var(--suave)}
+#mensaje .estado{margin:0;font-size:14px;color:var(--texto);background:var(--aviso);border:1px solid var(--aviso-borde);
+  border-radius:8px;padding:8px 12px}
+#mensaje .estado:empty{display:none}
 
 /* Descargas */
 .descargas{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
@@ -123,11 +158,49 @@ footer a{color:#d6deea}
       <a class="opc" href="#capturas" data-es="Capturas" data-en="Screenshots">Capturas</a>
       <a class="desc" href="#descargar" data-es="Descargar" data-en="Download">Descargar</a>
       <!-- Botón de donar arriba (antes: tarjeta al final). Barra fija: siempre a la vista. -->
+      <a class="opc" href="#" data-abrir-mensaje="mejora" data-es="Contacto" data-en="Contact">Contacto</a>
       <a class="donar" href="https://ko-fi.com/planigear" data-goatcounter-click="donar-kofi" target="_blank" rel="noopener" data-es="Donar" data-en="Donate">Donar</a>
       <button class="idioma" id="idioma" type="button" aria-label="Cambiar idioma">English</button>
     </nav>
   </div>
 </header>
+
+<!-- FIX (pedido: "en la web de planigear el contacto debe verse en el inicio de la pagina con la
+     opcion de mandar mensajes de mejoras o errores"). -->
+<div class="contacto-barra" id="contacto">
+  <div class="ancho">
+    <span data-es="¿Encontró un error o tiene una idea? Escríbanos:" data-en="Found a bug or have an idea? Write to us:">¿Encontró un error o tiene una idea? Escríbanos:</span>
+    <a class="correo" href="mailto:contact@planigear.com">contact@planigear.com</a>
+    <div class="acciones">
+      <button type="button" class="error" data-abrir-mensaje="error" data-goatcounter-click="contacto-error" data-es="Reportar un error" data-en="Report a bug">Reportar un error</button>
+      <button type="button" class="mejora" data-abrir-mensaje="mejora" data-goatcounter-click="contacto-mejora" data-es="Sugerir una mejora" data-en="Suggest an improvement">Sugerir una mejora</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="mensaje" aria-labelledby="mensaje-titulo">
+  <form method="dialog" id="form-mensaje">
+    <h3 id="mensaje-titulo" data-es="Escribir a Planigear" data-en="Write to Planigear">Escribir a Planigear</h3>
+    <p class="sub" data-es="Se abre su programa de correo con el mensaje listo para enviar a contact@planigear.com."
+       data-en="Your email app opens with the message ready to send to contact@planigear.com.">Se abre su programa de correo con el mensaje listo para enviar a contact@planigear.com.</p>
+    <div class="tipos" role="radiogroup">
+      <label><input type="radio" name="tipo" value="error"> <span data-es="Reportar un error" data-en="Report a bug">Reportar un error</span></label>
+      <label><input type="radio" name="tipo" value="mejora" checked> <span data-es="Sugerir una mejora" data-en="Suggest an improvement">Sugerir una mejora</span></label>
+    </div>
+    <label class="campo"><span data-es="Asunto" data-en="Subject">Asunto</span>
+      <input type="text" id="msj-asunto" maxlength="120" required></label>
+    <label class="campo"><span data-es="Mensaje" data-en="Message">Mensaje</span>
+      <small id="msj-ayuda"></small>
+      <textarea id="msj-texto" required></textarea></label>
+    <p class="nota" id="msj-sistema"></p>
+    <p class="estado" id="msj-estado" role="status"></p>
+    <div class="pie">
+      <button type="button" id="msj-copiar" data-es="Copiar el mensaje" data-en="Copy message">Copiar el mensaje</button>
+      <button type="button" id="msj-cerrar" data-es="Cancelar" data-en="Cancel">Cancelar</button>
+      <button type="submit" class="enviar" id="msj-enviar" data-es="Abrir el correo para enviar" data-en="Open email to send">Abrir el correo para enviar</button>
+    </div>
+  </form>
+</dialog>
 
 <div class="portada">
   <div class="ancho">
@@ -343,6 +416,86 @@ footer a{color:#d6deea}
       aplicar();
     })
     .catch(function(){});
+
+  // --- Contacto: mensaje de mejora o error (sitio estático: se arma un mailto:) ---
+  var CORREO = 'contact@planigear.com';
+  var TXT = {
+    es: {
+      asunto: { error: 'Error en Planigear: ', mejora: 'Mejora para Planigear: ' },
+      ayuda: { error: 'Diga qué hizo, qué pasó y qué esperaba. Si puede, adjunte una captura en el correo.',
+               mejora: 'Cuente qué le gustaría que hiciera el programa y para qué trabajo le sirve.' },
+      plantilla: { error: 'Qué estaba haciendo:\n\nQué pasó:\n\nQué esperaba:\n\nVersión de Planigear y sistema (Windows/Linux):\n',
+                   mejora: 'Qué me gustaría que hiciera Planigear:\n\nPara qué me sirve en mi trabajo:\n' },
+      sistema: 'Se agregará al final: ', faltaAsunto: 'Escriba un asunto.', faltaTexto: 'Escriba el mensaje.',
+      abierto: 'Si no se abrió su correo, use «Copiar el mensaje» y péguelo en un correo a ' + CORREO + '.',
+      copiado: 'Mensaje copiado. Péguelo en un correo a ' + CORREO + '.',
+      noCopiado: 'No se pudo copiar. Seleccione el texto del mensaje y cópielo a mano.',
+      pie: 'Enviado desde planigear.com'
+    },
+    en: {
+      asunto: { error: 'Planigear bug: ', mejora: 'Planigear improvement: ' },
+      ayuda: { error: 'Tell us what you did, what happened and what you expected. Attach a screenshot to the email if you can.',
+               mejora: 'Tell us what you would like the program to do and what work it helps with.' },
+      plantilla: { error: 'What I was doing:\n\nWhat happened:\n\nWhat I expected:\n\nPlanigear version and system (Windows/Linux):\n',
+                   mejora: 'What I would like Planigear to do:\n\nHow it helps my work:\n' },
+      sistema: 'Added at the end: ', faltaAsunto: 'Write a subject.', faltaTexto: 'Write the message.',
+      abierto: 'If your email app did not open, use “Copy message” and paste it into an email to ' + CORREO + '.',
+      copiado: 'Message copied. Paste it into an email to ' + CORREO + '.',
+      noCopiado: 'Could not copy. Select the message text and copy it by hand.',
+      pie: 'Sent from planigear.com'
+    }
+  };
+  var dlg = document.getElementById('mensaje'), fAsunto = document.getElementById('msj-asunto'),
+      fTexto = document.getElementById('msj-texto'), fEstado = document.getElementById('msj-estado');
+  function tipoActual(){ var r = dlg.querySelector('input[name=tipo]:checked'); return r ? r.value : 'mejora'; }
+  function sistema(){
+    var ua = navigator.userAgent;
+    var so = /Windows/.test(ua) ? 'Windows' : /Android/.test(ua) ? 'Android' : /iPhone|iPad/.test(ua) ? 'iOS' : /Mac/.test(ua) ? 'macOS' : /Linux/.test(ua) ? 'Linux' : '?';
+    return so + (version ? ' · web v' + version : '');
+  }
+  // Cambiar de tipo reemplaza el texto solo si todavía es una plantilla sin tocar.
+  function prepararTipo(tipo, forzar){
+    var t = TXT[idioma];
+    var esPlantilla = !fTexto.value || [TXT.es, TXT.en].some(function(x){ return fTexto.value === x.plantilla.error || fTexto.value === x.plantilla.mejora; });
+    var asuntoVacio = !fAsunto.value || [TXT.es, TXT.en].some(function(x){ return fAsunto.value === x.asunto.error || fAsunto.value === x.asunto.mejora; });
+    if (forzar || esPlantilla) fTexto.value = t.plantilla[tipo];
+    if (forzar || asuntoVacio) fAsunto.value = t.asunto[tipo];
+    document.getElementById('msj-ayuda').textContent = t.ayuda[tipo];
+    document.getElementById('msj-sistema').textContent = t.sistema + sistema();
+  }
+  function textoCompleto(){ return fTexto.value.trim() + '\n\n---\n' + TXT[idioma].pie + ' · ' + sistema(); }
+  function abrirMensaje(tipo){
+    dlg.querySelector('input[name=tipo][value=' + tipo + ']').checked = true;
+    fEstado.textContent = '';
+    prepararTipo(tipo, false);
+    dlg.showModal();
+    fAsunto.focus(); fAsunto.setSelectionRange(fAsunto.value.length, fAsunto.value.length);
+  }
+  document.querySelectorAll('[data-abrir-mensaje]').forEach(function(b){
+    b.addEventListener('click', function(ev){ ev.preventDefault(); abrirMensaje(b.getAttribute('data-abrir-mensaje')); });
+  });
+  dlg.querySelectorAll('input[name=tipo]').forEach(function(r){ r.addEventListener('change', function(){ prepararTipo(tipoActual(), false); }); });
+  document.getElementById('msj-cerrar').addEventListener('click', function(){ dlg.close(); });
+  dlg.addEventListener('click', function(ev){ if (ev.target === dlg) dlg.close(); }); // clic fuera = cerrar
+  function validar(){
+    var t = TXT[idioma], tipo = tipoActual();
+    if (!fAsunto.value.trim() || fAsunto.value === t.asunto[tipo]) { fEstado.textContent = t.faltaAsunto; fAsunto.focus(); return false; }
+    if (!fTexto.value.trim() || fTexto.value === t.plantilla[tipo]) { fEstado.textContent = t.faltaTexto; fTexto.focus(); return false; }
+    return true;
+  }
+  document.getElementById('form-mensaje').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if (!validar()) return;
+    var url = 'mailto:' + CORREO + '?subject=' + encodeURIComponent(fAsunto.value.trim()) + '&body=' + encodeURIComponent(textoCompleto());
+    if (window.goatcounter && window.goatcounter.count) { try { window.goatcounter.count({ path: 'mensaje-' + tipoActual(), event: true }); } catch(e){} }
+    window.location.href = url;
+    fEstado.textContent = TXT[idioma].abierto;
+  });
+  document.getElementById('msj-copiar').addEventListener('click', function(){
+    var t = TXT[idioma], todo = CORREO + '\n' + fAsunto.value.trim() + '\n\n' + textoCompleto();
+    var ok = function(){ fEstado.textContent = t.copiado; }, mal = function(){ fEstado.textContent = t.noCopiado; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(todo).then(ok, mal); else mal();
+  });
 
   // --- Visor de capturas ---
   var visor = document.getElementById('visor');
