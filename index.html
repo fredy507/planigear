@@ -90,17 +90,19 @@ dialog{border:0;padding:0;background:transparent;max-width:96vw}
 dialog::backdrop{background:rgba(5,12,20,.85)}
 dialog img{max-width:96vw;max-height:90vh;display:block;border-radius:8px}
 /* Contacto al inicio de la página + ventana para escribir mejoras o errores */
-.contacto-barra{background:var(--azul);color:#d6deea;font-size:14.5px;border-bottom:1px solid #2a4a70}
-.contacto-barra .ancho{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-top:9px;padding-bottom:9px}
-.contacto-barra a.correo{color:#fff;font-weight:700;text-decoration:none;word-break:break-all}
-.contacto-barra a.correo:hover{text-decoration:underline}
-.contacto-barra .acciones{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
-.contacto-barra button{font:inherit;font-size:14px;font-weight:600;cursor:pointer;border-radius:8px;padding:6px 14px;
-  background:transparent;color:#fff;border:1px solid #4b6386}
-.contacto-barra button:hover{border-color:#fff}
-.contacto-barra button.mejora{background:var(--naranja);border-color:var(--naranja);color:var(--azul-3)}
-.contacto-barra button.mejora:hover{background:#ffb653}
-@media (max-width:620px){ .contacto-barra .acciones{margin-left:0;width:100%} .contacto-barra button{flex:1} }
+/* Contacto en la misma barra de las secciones: dos botones a lo ancho; en pantallas angostas,
+   un solo enlace «Contacto» (y solo el sobre en el celular) que abre la misma ventana. */
+nav .contacto-btn{font:inherit;font-size:14px;font-weight:600;cursor:pointer;border-radius:8px;padding:5px 12px;
+  background:transparent;color:#fff;border:1px solid #4b6386;white-space:nowrap}
+nav .contacto-btn:hover{border-color:#fff}
+nav .contacto-btn.mejora{border-color:var(--naranja);color:var(--naranja)}
+nav .contacto-btn.mejora:hover{background:var(--naranja);color:var(--azul-3)}
+nav a.contacto-min{display:none;align-items:center;gap:6px}
+nav a.contacto-min svg{width:18px;height:18px;flex:none}
+@media (max-width:1060px){ nav .contacto-btn{display:none} nav a.contacto-min{display:inline-flex} }
+@media (max-width:480px){ nav a.contacto-min span{display:none} header.barra .ancho{padding:0 14px;gap:10px} .marca{font-size:18px;gap:8px} }
+#mensaje .sub a{color:var(--naranja-osc);font-weight:700}
+@media (prefers-color-scheme: dark){ #mensaje .sub a{color:var(--naranja)} }
 dialog#mensaje{background:var(--tarjeta);color:var(--texto);border-radius:14px;width:min(560px,calc(100vw - 32px));
   max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 dialog#mensaje::backdrop{background:rgba(5,12,20,.6)}
@@ -158,31 +160,22 @@ footer a{color:#d6deea}
       <a class="opc" href="#capturas" data-es="Capturas" data-en="Screenshots">Capturas</a>
       <a class="desc" href="#descargar" data-es="Descargar" data-en="Download">Descargar</a>
       <!-- Botón de donar arriba (antes: tarjeta al final). Barra fija: siempre a la vista. -->
-      <a class="opc" href="#" data-abrir-mensaje="mejora" data-es="Contacto" data-en="Contact">Contacto</a>
+      <!-- FIX (pedido: "ocupa espacio inecesrio , deberia estar en el mimso ribbon donde estan las secciones"):
+           el contacto ya no tiene franja propia; va aquí, en la barra de las secciones. -->
+      <button type="button" class="contacto-btn error" data-abrir-mensaje="error" data-goatcounter-click="contacto-error" data-es="Reportar un error" data-en="Report a bug">Reportar un error</button>
+      <button type="button" class="contacto-btn mejora" data-abrir-mensaje="mejora" data-goatcounter-click="contacto-mejora" data-es="Sugerir una mejora" data-en="Suggest an improvement">Sugerir una mejora</button>
+      <a class="contacto-min" href="mailto:contact@planigear.com" data-abrir-mensaje="mejora" data-goatcounter-click="contacto-menu" aria-label="Contacto: contact@planigear.com" title="contact@planigear.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-es="Contacto" data-en="Contact">Contacto</span></a>
       <a class="donar" href="https://ko-fi.com/planigear" data-goatcounter-click="donar-kofi" target="_blank" rel="noopener" data-es="Donar" data-en="Donate">Donar</a>
       <button class="idioma" id="idioma" type="button" aria-label="Cambiar idioma">English</button>
     </nav>
   </div>
 </header>
 
-<!-- FIX (pedido: "en la web de planigear el contacto debe verse en el inicio de la pagina con la
-     opcion de mandar mensajes de mejoras o errores"). -->
-<div class="contacto-barra" id="contacto">
-  <div class="ancho">
-    <span data-es="¿Encontró un error o tiene una idea? Escríbanos:" data-en="Found a bug or have an idea? Write to us:">¿Encontró un error o tiene una idea? Escríbanos:</span>
-    <a class="correo" href="mailto:contact@planigear.com">contact@planigear.com</a>
-    <div class="acciones">
-      <button type="button" class="error" data-abrir-mensaje="error" data-goatcounter-click="contacto-error" data-es="Reportar un error" data-en="Report a bug">Reportar un error</button>
-      <button type="button" class="mejora" data-abrir-mensaje="mejora" data-goatcounter-click="contacto-mejora" data-es="Sugerir una mejora" data-en="Suggest an improvement">Sugerir una mejora</button>
-    </div>
-  </div>
-</div>
-
 <dialog id="mensaje" aria-labelledby="mensaje-titulo">
   <form method="dialog" id="form-mensaje">
     <h3 id="mensaje-titulo" data-es="Escribir a Planigear" data-en="Write to Planigear">Escribir a Planigear</h3>
-    <p class="sub" data-es="Se abre su programa de correo con el mensaje listo para enviar a contact@planigear.com."
-       data-en="Your email app opens with the message ready to send to contact@planigear.com.">Se abre su programa de correo con el mensaje listo para enviar a contact@planigear.com.</p>
+    <p class="sub" data-es-html="¿Encontró un error o tiene una idea? Se abre su programa de correo con el mensaje listo para enviar a &lt;a href=&quot;mailto:contact@planigear.com&quot;&gt;contact@planigear.com&lt;/a&gt;."
+       data-en-html="Found a bug or have an idea? Your email app opens with the message ready to send to &lt;a href=&quot;mailto:contact@planigear.com&quot;&gt;contact@planigear.com&lt;/a&gt;.">¿Encontró un error o tiene una idea? Se abre su programa de correo con el mensaje listo para enviar a <a href="mailto:contact@planigear.com">contact@planigear.com</a>.</p>
     <div class="tipos" role="radiogroup">
       <label><input type="radio" name="tipo" value="error"> <span data-es="Reportar un error" data-en="Report a bug">Reportar un error</span></label>
       <label><input type="radio" name="tipo" value="mejora" checked> <span data-es="Sugerir una mejora" data-en="Suggest an improvement">Sugerir una mejora</span></label>
