@@ -1,0 +1,129 @@
+<!doctype html>
+<!-- Política de privacidad de Planigear (planigear.com/privacidad.html).
+     FIX (pedido: "fase 10: legal y publicación"): la enlazan la web, el programa
+     de la PC y Planigear móvil («Archivo → Acerca de»). Si cambia lo que el
+     software manda por internet, actualizar esta página y la fecha. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacidad — Planigear</title>
+<meta name="description" content="Qué datos usa Planigear (PC, celular y web) y qué no hace con ellos.">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<style>
+:root{ --azul-3:#0f2238; --naranja-osc:#d9861a; --naranja:#f2a33a; --fondo:#f6f7f9; --tarjeta:#fff; --texto:#1b2430; --suave:#5a6676; --borde:#e2e6eb; }
+@media (prefers-color-scheme: dark){ :root{ --fondo:#0e1a28; --tarjeta:#15263a; --texto:#e8edf3; --suave:#a7b3c2; --borde:#24384f; } a{color:var(--naranja)!important} }
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--texto);font-family:"Noto Sans","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.6}
+a{color:var(--naranja-osc)}
+header{background:var(--azul-3);color:#fff}
+header .ancho{display:flex;align-items:center;gap:16px;height:60px}
+header a.marca{color:#fff;text-decoration:none;font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px}
+header a.marca img{width:34px;height:34px}
+header button{margin-left:auto;background:transparent;border:1px solid #4b6386;color:#fff;border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit;font-size:14px}
+.ancho{max-width:820px;margin:0 auto;padding:0 16px}
+main{background:var(--tarjeta);border:1px solid var(--borde);border-radius:12px;padding:8px 22px 18px;margin:24px auto}
+h1{font-size:28px;margin:16px 0 4px}
+h2{font-size:19px;margin:22px 0 6px}
+p.fecha{color:var(--suave);margin:0 0 12px}
+li{margin:4px 0}
+footer{color:var(--suave);font-size:14px;padding:0 0 30px}
+[lang-bloque]{display:none}
+html[lang="es"] [lang-bloque="es"], html[lang="en"] [lang-bloque="en"]{display:block}
+</style>
+</head>
+<body>
+<header><div class="ancho"><a class="marca" href="index.html"><img src="img/logo.svg" alt="">Planigear</a><button id="idioma">English</button></div></header>
+
+<div class="ancho">
+<main>
+<div lang-bloque="es">
+  <h1>Política de privacidad</h1>
+  <p class="fecha">Vigente desde el 27 de noviembre de 2026.</p>
+  <p>Planigear es un programa de topografía hecho en Panamá por Alonso Frederik Arauz Jordan (contacto: <a href="mailto:contact@planigear.com">contact@planigear.com</a>). Esta página explica qué datos usan el programa de la PC, la app del celular (Planigear móvil) y esta web.</p>
+
+  <h2>Lo principal</h2>
+  <ul>
+    <li><b>Tus proyectos, puntos, planos y fotos se quedan en tu equipo.</b> Planigear no tiene servidores propios, cuentas de usuario, publicidad ni estadísticas de uso dentro del programa o de la app.</li>
+    <li>Nadie, ni el autor, recibe tus datos a menos que tú mismo los mandes (por ejemplo, por correo o al compartir un archivo).</li>
+    <li>No vendemos ni compartimos datos con nadie.</li>
+  </ul>
+
+  <h2>Cuándo se usa internet</h2>
+  <p>Solo en estos casos, y cuando tú lo pides o lo activas:</p>
+  <ul>
+    <li><b>Buscar versión nueva</b> (PC y celular): se consulta la lista pública de descargas en GitHub (<i>api.github.com</i>). GitHub ve la dirección IP del equipo, como en cualquier página web. En el celular solo se hace al pulsar el botón o si activas «buscar sola una vez por semana».</li>
+    <li><b>Mapa de calles</b> (celular): al pulsar «Descargar la zona que veo» se piden calles y lugares de esa zona a servidores públicos de OpenStreetMap (Overpass). Ellos ven tu IP y la zona pedida.</li>
+    <li><b>Estaciones CORS</b> (celular): la lista de estaciones se pide al servicio público de la ANATI (Panamá).</li>
+    <li><b>Correcciones NTRIP</b> (celular, GNSS): la app se conecta al servidor que tú escribas, con el usuario y la clave que tú pongas. Esa clave queda guardada solo en tu celular.</li>
+  </ul>
+
+  <h2>Permisos de la app del celular</h2>
+  <ul>
+    <li><b>Ubicación:</b> para mostrar dónde estás en el mapa y para el GNSS. No se guarda en ningún servidor.</li>
+    <li><b>Bluetooth y USB:</b> para conectar la estación total o el receptor GNSS.</li>
+    <li><b>Cámara y archivos:</b> para fotos de mojones o documentos y para guardar en <i>Documentos/Planigear</i>. Las fotos de cédulas o escrituras son datos personales de otras personas: tómalas solo con su permiso y no las compartas en redes.</li>
+    <li>La app no hace copias en la nube de Google (copia de seguridad de Android desactivada). Para pasar tus datos a la PC, copia la carpeta <i>Documentos/Planigear</i>.</li>
+  </ul>
+
+  <h2>Esta web</h2>
+  <ul>
+    <li>La web está alojada en GitHub Pages, que registra las visitas (IP, navegador) según la <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement">declaración de privacidad de GitHub</a>.</li>
+    <li>Contamos visitas y descargas con GoatCounter, que no usa cookies ni guarda tu IP ni te sigue entre sitios.</li>
+    <li>La web solo guarda en tu navegador el idioma que elegiste.</li>
+    <li>Los mensajes de contacto se envían con tu propio programa de correo: solo los recibe el autor y se usan para responder y mejorar Planigear.</li>
+    <li>Las donaciones se hacen en Ko-fi o PayPal, que tienen sus propias políticas de privacidad.</li>
+  </ul>
+
+  <h2>Tus derechos</h2>
+  <p>Como tus datos están en tu equipo, puedes verlos, copiarlos o borrarlos cuando quieras (en el celular: «Archivo → Vaciar este proyecto» o desinstalar la app). Si nos escribiste y quieres que borremos tu correo, pídelo a <a href="mailto:contact@planigear.com">contact@planigear.com</a>. Esta política se rige por las leyes de la República de Panamá (Ley 81 de 2019 de protección de datos personales).</p>
+
+  <h2>Cambios</h2>
+  <p>Si Planigear empieza a usar internet para algo nuevo, se actualizará esta página y su fecha antes de publicar esa versión.</p>
+</div>
+
+<div lang-bloque="en">
+  <h1>Privacy policy</h1>
+  <p class="fecha">Effective November 27, 2026. The Spanish version prevails.</p>
+  <p>Planigear is surveying software made in Panama by Alonso Frederik Arauz Jordan (contact: <a href="mailto:contact@planigear.com">contact@planigear.com</a>). This page explains what data the desktop program, the phone app (Planigear mobile) and this website use.</p>
+  <h2>In short</h2>
+  <ul>
+    <li><b>Your projects, points, drawings and photos stay on your device.</b> Planigear has no servers of its own, no user accounts, no ads and no usage analytics in the program or the app.</li>
+    <li>Nobody, including the author, receives your data unless you send it yourself.</li>
+    <li>We do not sell or share data with anyone.</li>
+  </ul>
+  <h2>When the internet is used</h2>
+  <ul>
+    <li><b>Check for a new version</b> (desktop and phone): the public download list on GitHub (<i>api.github.com</i>) is read; GitHub sees the device's IP address. On the phone only when you press the button or turn on the weekly check.</li>
+    <li><b>Street map</b> (phone): when you download an area, streets and places are requested from public OpenStreetMap (Overpass) servers.</li>
+    <li><b>CORS stations</b> (phone): the station list comes from the public service of ANATI (Panama).</li>
+    <li><b>NTRIP corrections</b> (phone, GNSS): the app connects to the server you type, with your user and password, stored only on your phone.</li>
+  </ul>
+  <h2>Phone app permissions</h2>
+  <ul>
+    <li><b>Location</b> for the map and GNSS; <b>Bluetooth and USB</b> for the total station or GNSS receiver; <b>camera and files</b> for photos and saving to <i>Documents/Planigear</i>. Photos of ID cards or deeds are other people's personal data: take them only with permission.</li>
+    <li>Android cloud backup is turned off for the app.</li>
+  </ul>
+  <h2>This website</h2>
+  <ul>
+    <li>Hosted on GitHub Pages, which logs visits under GitHub's privacy statement. Visits and downloads are counted with GoatCounter (no cookies, no IP stored, no cross-site tracking). Only your chosen language is stored in your browser. Contact messages are sent with your own email program and are used only to reply and improve Planigear. Donations go through Ko-fi or PayPal under their own policies.</li>
+  </ul>
+  <h2>Your rights and changes</h2>
+  <p>Your data is on your device: you can view, copy or delete it at any time. To have your email deleted, write to <a href="mailto:contact@planigear.com">contact@planigear.com</a>. Governed by the laws of the Republic of Panama (Law 81 of 2019). If Planigear starts using the internet for something new, this page and its date will be updated before that version is released.</p>
+</div>
+</main>
+<footer>© 2026 Alonso Frederik Arauz Jordan (Panamá) · <a href="index.html">planigear.com</a></footer>
+</div>
+<script>
+(function(){
+  var idioma = 'es';
+  try { idioma = localStorage.getItem('idioma') || (navigator.language||'es').slice(0,2); } catch(e){}
+  if (idioma !== 'en') idioma = 'es';
+  function aplicar(){ document.documentElement.lang = idioma; document.getElementById('idioma').textContent = idioma === 'es' ? 'English' : 'Español'; }
+  document.getElementById('idioma').addEventListener('click', function(){ idioma = idioma === 'es' ? 'en' : 'es'; try { localStorage.setItem('idioma', idioma); } catch(e){} aplicar(); });
+  aplicar();
+})();
+</script>
+<script data-goatcounter="https://planigear.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

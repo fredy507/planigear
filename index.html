@@ -269,6 +269,10 @@ footer a{color:#d6deea}
         <strong>Linux Mint, Ubuntu, Debian</strong><span data-es="Paquete .deb: doble clic para instalar" data-en=".deb package: double-click to install">Paquete .deb: doble clic para instalar</span><span class="archivo"></span></a>
       <a class="descarga" data-sufijo="linux-x86_64.AppImage" data-goatcounter-click="descarga-linux-appimage" href="https://github.com/fredy507/planigear/releases/latest">
         <strong data-es="Otras distribuciones Linux" data-en="Other Linux distributions">Otras distribuciones Linux</strong><span data-es="AppImage: permita ejecutar y doble clic" data-en="AppImage: allow running and double-click">AppImage: permita ejecutar y doble clic</span><span class="archivo"></span></a>
+      <!-- FIX (pedido: "fase 10: legal y publicación"): tarjeta de Planigear móvil. Oculta hasta que
+           exista en las descargas un «planigear-movil-<versión>-android.apk». -->
+      <a class="descarga" id="descarga-android" style="display:none" data-goatcounter-click="descarga-android" href="https://github.com/fredy507/planigear/releases">
+        <strong data-es="Android (celular)" data-en="Android (phone)">Android (celular)</strong><span data-es="Planigear móvil: campo, estación y replanteo. Android 8 o más nuevo" data-en="Planigear mobile: field, total station and stakeout. Android 8 or newer">Planigear móvil: campo, estación y replanteo. Android 8 o más nuevo</span><span class="archivo"></span></a>
     </div>
     <p style="margin-top:14px;font-size:14px;color:var(--suave)">
       <a href="https://github.com/fredy507/planigear/releases" data-es="Todas las versiones y sumas SHA-256" data-en="All versions and SHA-256 checksums">Todas las versiones y sumas SHA-256</a>
@@ -348,7 +352,8 @@ footer a{color:#d6deea}
   <div class="ancho">
     <div>© 2026 Alonso Frederik Arauz Jordan (Panamá). <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span><br>
       <span data-es="Software propietario de uso gratuito." data-en="Proprietary freeware.">Software propietario de uso gratuito.</span>
-      <a href="https://github.com/fredy507/planigear/blob/main/LICENSE.txt" data-es="Licencia" data-en="License">Licencia</a></div>
+      <a href="https://github.com/fredy507/planigear/blob/main/LICENSE.txt" data-es="Licencia" data-en="License">Licencia</a> ·
+      <a href="privacidad.html" data-es="Privacidad" data-en="Privacy">Privacidad</a></div>
     <div><a href="https://ko-fi.com/planigear" data-goatcounter-click="donar-kofi" target="_blank" rel="noopener" data-es="Apoyar el proyecto" data-en="Support the project">Apoyar el proyecto</a> · <a href="https://github.com/fredy507/planigear/releases">GitHub</a></div>
   </div>
 </footer>
@@ -407,6 +412,29 @@ footer a{color:#d6deea}
         b.setAttribute('data-en', suf.indexOf('windows') === 0 ? 'Download for Windows' : 'Download for Linux');
       }
       aplicar();
+    })
+    .catch(function(){});
+
+  // --- Planigear móvil: el APK más nuevo entre todas las releases (no es la «latest») ---
+  fetch('https://api.github.com/repos/fredy507/planigear/releases?per_page=30')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(rels){
+      if (!rels) return;
+      var mejor = null;
+      function num(v){ return v.split('.').map(Number); }
+      function mayor(a, b){ a = num(a); b = num(b); for (var i = 0; i < Math.max(a.length, b.length); i++){ var d = (a[i]||0) - (b[i]||0); if (d) return d > 0; } return false; }
+      rels.forEach(function(rel){
+        if (rel.draft || rel.prerelease) return;
+        (rel.assets || []).forEach(function(x){
+          var m = /^planigear-movil-(\d+(?:\.\d+)*)-android\.apk$/.exec(x.name);
+          if (m && (!mejor || mayor(m[1], mejor.v))) mejor = { v: m[1], a: x };
+        });
+      });
+      if (!mejor) return;
+      var t = document.getElementById('descarga-android');
+      t.href = mejor.a.browser_download_url;
+      t.querySelector('.archivo').textContent = mejor.a.name + ' · ' + mb(mejor.a.size);
+      t.style.display = '';
     })
     .catch(function(){});
 
