@@ -1,7 +1,7 @@
 // Código de panel.html (antes en línea; separado para la política de contenido, CSP).
 (function(){
   'use strict';
-  const GC = 'planigear';
+  const GC = 'planigear507';   // código de la cuenta en GoatCounter
   const REPO = 'fredy507/planigear';
 
   const EVENTOS = [
