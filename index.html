@@ -206,6 +206,8 @@ footer a{color:#d6deea}
       <div class="botones">
         <a class="boton principal" id="boton-principal" href="#descargar" data-es="Descargar gratis" data-en="Free download">Descargar gratis</a>
         <a class="boton secundario" href="#capturas" data-es="Ver capturas" data-en="See screenshots">Ver capturas</a>
+        <!-- FIX (pedido: "aqui puede ir el instalador de andorid"): aparece cuando hay APK publicado. -->
+        <a class="boton secundario" id="boton-android" style="display:none" data-goatcounter-click="descarga-android-portada" href="#descargar" data-es="Descargar para Android" data-en="Download for Android">Descargar para Android</a>
       </div>
       <div class="nota-version" id="nota-version" data-es="Windows 10/11 y Linux (64 bits)" data-en="Windows 10/11 and Linux (64-bit)">Windows 10/11 y Linux (64 bits)</div>
     </div>
@@ -276,6 +278,7 @@ footer a{color:#d6deea}
     </div>
     <p style="margin-top:14px;font-size:14px;color:var(--suave)">
       <a href="https://github.com/fredy507/planigear/releases" data-es="Todas las versiones y sumas SHA-256" data-en="All versions and SHA-256 checksums">Todas las versiones y sumas SHA-256</a>
+      · <a href="privacidad.html" data-es="Política de privacidad" data-en="Privacy policy">Política de privacidad</a>
     </p>
 
     <div class="aviso">
@@ -435,6 +438,19 @@ footer a{color:#d6deea}
       t.href = mejor.a.browser_download_url;
       t.querySelector('.archivo').textContent = mejor.a.name + ' · ' + mb(mejor.a.size);
       t.style.display = '';
+      var b = document.getElementById('boton-android');
+      b.href = mejor.a.browser_download_url;
+      b.style.display = '';
+      // En un celular Android, el botón principal baja directo el APK.
+      if (/Android/.test(navigator.userAgent)){
+        var p = document.getElementById('boton-principal');
+        p.href = mejor.a.browser_download_url;
+        p.setAttribute('data-goatcounter-click', 'descarga-android-principal');
+        p.setAttribute('data-es', 'Descargar para Android');
+        p.setAttribute('data-en', 'Download for Android');
+        p.textContent = p.getAttribute('data-' + idioma);
+        b.style.display = 'none';
+      }
     })
     .catch(function(){});
 
